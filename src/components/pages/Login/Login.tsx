@@ -4,8 +4,10 @@ import Input from "../../ui/Input";
 import styles from "./Login.module.css";
 import { login } from "../../../services/auth.service";
 import { setLocalStorage } from "../../../utils/localStorage";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const handleLogin = async (event: FormEvent) => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
@@ -15,6 +17,8 @@ const Login = () => {
     };
     const result = await login(payload);
     setLocalStorage("auth", result.token);
+
+    return navigate("/orders");
   };
 
   return (

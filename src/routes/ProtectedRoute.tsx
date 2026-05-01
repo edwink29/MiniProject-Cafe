@@ -12,11 +12,11 @@ const ProtectedRoute = (props: PropTypes) => {
   const currentRoute = useLocation().pathname;
 
   if (!auth && currentRoute !== "/login") {
-    return <Navigate to="login" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   if (auth && currentRoute === "/login") {
-    return <Navigate to="orders" replace />;
+    return <Navigate to="/orders" replace />;
   }
 
   return <>{children}</>;
