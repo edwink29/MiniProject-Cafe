@@ -9,16 +9,17 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
   const handleLogin = async (event: FormEvent) => {
-    event.preventDefault();
-    const form = event.target as HTMLFormElement;
+    event.preventDefault(); // mencegah form reload halaman
+    const form = event.target as HTMLFormElement; // ambil data dari form
     const payload = {
+      // ambil value
       email: form.email.value,
       password: form.password.value,
     };
-    const result = await login(payload);
-    setLocalStorage("auth", result.token);
+    const result = await login(payload); // kirim ke api (authService → fetchAPI → backend)
+    setLocalStorage("auth", result.token); // simpan token
 
-    return navigate("/orders");
+    return navigate("/orders"); // pindah halaman orders
   };
 
   return (

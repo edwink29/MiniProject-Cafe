@@ -7,9 +7,9 @@ interface PropTypes {
 
 const ProtectedRoute = (props: PropTypes) => {
   const { children } = props;
-  const auth = localStorage.getItem("auth");
+  const auth = localStorage.getItem("auth"); // user login
+  const currentRoute = useLocation().pathname; // user halaman
 
-  const currentRoute = useLocation().pathname;
 
   if (!auth && currentRoute !== "/login") {
     return <Navigate to="/login" replace />;
